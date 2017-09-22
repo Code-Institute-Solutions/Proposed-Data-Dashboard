@@ -137,76 +137,36 @@ function show_average_salaries(ndx) {
 
 
 function show_rank_distribution(ndx) {
+
+    var reduceByRank = function (dim, rank) {
+        return dim.group().reduce(
+            function (p, v) {
+                p.total++;
+                if (v.rank === rank) {
+                    p.match++;
+                };
+                p.percent = p.match / p.total;
+                return p;
+            },
+            function (p, v) {
+                p.total--;
+                if (v.rank === rank) {
+                    p.match--;
+                };
+                p.percent = p.match / p.total;
+                return p;
+            },
+            function () {
+                return { total: 0, match: 0, percent: 0 }
+            }
+        );
+    };
+
     var genderDim = ndx.dimension(dc.pluck("sex"));
-
-    var rankByGenderAssocProf = genderDim.group().reduce(
-        function (p, v) {
-            p.total++;
-            if (v.rank === "AssocProf") {
-                p.match++;
-            };
-            p.percent = p.match / p.total;
-            return p;
-        },
-        function (p, v) {
-            p.total--;
-            if (v.rank === "AssocProf") {
-                p.match--;
-            };
-            p.percent = p.match / p.total;
-            return p;
-        },
-        function () {
-            return { total: 0, match: 0, percent: 0 }
-        }
-    );
-    var rankByGenderAsstProf = genderDim.group().reduce(
-        function (p, v) {
-            p.total++;
-            if (v.rank === "AsstProf") {
-                p.match++;
-            };
-            p.percent = p.match / p.total;
-            return p;
-        },
-        function (p, v) {
-            p.total--;
-            if (v.rank === "AsstProf") {
-                p.match--;
-            };
-            p.percent = p.match / p.total;
-            return p;
-        },
-        function () {
-            return { total: 0, match: 0, percent: 0 }
-        }
-    );
-    var rankByGenderProf = genderDim.group().reduce(
-        function (p, v) {
-            p.total++;
-            if (v.rank === "Prof") {
-                p.match++;
-            };
-            p.percent = p.match / p.total;
-            return p;
-        },
-        function (p, v) {
-            p.total--;
-            if (v.rank === "Prof") {
-                p.match--;
-            };
-            p.percent = p.match / p.total;
-            return p;
-        },
-        function () {
-            return { total: 0, match: 0, percent: 0 }
-        }
-    );
-
-    console.log(rankByGenderAssocProf.all());
-    console.log(rankByGenderAsstProf.all());
-    console.log(rankByGenderProf.all());
-
+    var rankByGenderAssocProf = reduceByRank(genderDim, "AssocProf");
+    var rankByGenderAsstProf = reduceByRank(genderDim, "AsstProf");
+    var rankByGenderProf = reduceByRank(genderDim, "Prof");
+    
     dc.barChart("#rank-distribution")
         .width(400)
         .height(300)
