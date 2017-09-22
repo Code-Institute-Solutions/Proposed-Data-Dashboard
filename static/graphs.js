@@ -182,7 +182,7 @@ function show_service_to_salary_correlation(ndx) {
 
     var eDim = ndx.dimension(dc.pluck("yrs_service"));
     var experienceDim = ndx.dimension(function(d){
-        return [d.yrs_service, d.salary, d];
+        return [d.yrs_service, d.salary, d.rank, d.sex];
     });
     var experienceSalaryGroup = experienceDim.group();
 
@@ -199,10 +199,10 @@ function show_service_to_salary_correlation(ndx) {
         .yAxisLabel("Salary")
         .xAxisLabel("Years Of Service")
         .title(function (d) {
-            return d.key[2].rank + " earned " + d.key[2].salary;
+            return d.key[2] + " earned " + d.key[1];
         })
         .colorAccessor(function (d) {
-            return d.key[2].sex;
+            return d.key[3];
         })
         .colors(genderColors)
         .dimension(experienceDim)
@@ -218,7 +218,7 @@ function show_phd_to_salary_correlation(ndx) {
 
     var pDim = ndx.dimension(dc.pluck("yrs_since_phd"));
     var phdDim = ndx.dimension(function(d){
-        return [d.yrs_since_phd, d.salary, d];
+        return [d.yrs_since_phd, d.salary, d.rank, d.sex];
     });
     var phdSalaryGroup = phdDim.group();
 
@@ -235,10 +235,10 @@ function show_phd_to_salary_correlation(ndx) {
         .yAxisLabel("Salary")
         .xAxisLabel("Years Since PhD")
         .title(function (d) {
-            return d.key[2].rank + " earned " + d.key[2].salary;
+            return d.key[2] + " earned " + d.key[2];
         })
         .colorAccessor(function (d) {
-            return d.key[2].sex;
+            return d.key[3];
         })
         .colors(genderColors)
         .dimension(phdDim)
