@@ -1,5 +1,31 @@
+.navbar-default {
+	background-image: none;
+	margin-bottom: 0;
+}
+
+#discipline-selector {
+	margin-bottom: 30px;
+}
+
 .number-box {
-    font-size: 64px;
-    text-align: center;
-    line-height: normal;
+    font-size: 30px;
+    font-weight: 500;
+}
+
+.custom-chart {
+	margin-bottom: 40px;
+}
+
+.section {
+	border-bottom: 1px solid #e6e6e6;
+	padding: 50px 0;
+}
+
+.section-heading {
+	margin-bottom: 50px;
+	line-height: 1.2;
+}
+
+.dc-select-menu {
+	margin: 30px auto;
 }

@@ -7,6 +7,7 @@
     <title>Data Dashboard</title>
 
     <link rel="stylesheet" type="text/css" href="static/bootstrap.css"/>
+    <link rel="stylesheet" type="text/css" href="static/bootswatch_cosmo.min.css"/>
     <link rel="stylesheet" type="text/css" href="static/style.css"/>
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/dc/2.1.8/dc.min.css"/>
 
@@ -17,54 +18,95 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/queue-async/1.0.7/queue.min.js"></script>
 </head>
 <body>
-    <div class="container">
-        <div class="row">
-            <h1>Gender In Academia</h1>
-        </div>
+	<nav class="navbar navbar-default">
+	  <div class="container-fluid">
+	    <div class="navbar-header">
+	      <a class="navbar-brand" href="#">Gender In Academia</a>
+	    </div>
+	</nav>
 
-        <div class="row">
-            <div class="col-md-offset-5">Select Discipline</div>
-        </div>
-        <div class="row">
-            <div class="col-md-offset-5" id="discipline-selector"></div>
-        </div>
+	<main>
+	  <section class="section">
+	    <div class="container">
+	      
+	      <div class="row">
+	        <div class="col-xs-12 col-sm-12 text-center">
+	          <h1>Gender in Academia</h1>
+	        </div>
+	      </div>
 
-        <div class="row">
-          <div class="col-md-6">Less than half of the female academics in the study are professors.</div>
-          <div class="col-md-6">A majority of of the male academics are at the professor level.</div>
-        </div>
-        <div class="row">
-          <div class="col-md-6 number-box" id="percent-of-women-professors"></div>
-          <div class="col-md-6 number-box" id="percent-of-men-professors"></div>
-        </div>
 
-        <div class="row">
-          <div class="col-md-4">Men outnumber women 10 to 1</div>
-          <div class="col-md-4">Men earn on average about 15% more</div>
-          <div class="col-md-4">Distribution of ranks is weighted towards the upper level for men.</div>
-        </div>
-        <div class="row">
-          <div class="col-md-4" id="gender-balance"></div>
-          <div class="col-md-4" id="average-salary"></div>
-          <div class="col-md-4" id="rank-distribution"></div>
-        </div>
+	      <div class="row">
+	        <div class="col-xs-12 col-sm-12 text-center" id="discipline-selector">
+	        </div>
+	      </div>
 
-        <div class="row">
-          <div class="col-md-offset-2">There appears to be little or no correlation between salary and years of service.</div>
-        </div>
-        <div class="row">
-          <div class="col-md-offset-2" id="service-salary"></div>
-        </div>
+	      <div class="row">
+	        <div class="col-xs-12 col-sm-12 col-lg-6">
+	          <p>Less than half of the female academics in the study are professors: <span class="number-box" id="percent-of-women-professors"></span></p>
+	        </div>
+	        <div class="col-xs-12 col-sm-12 col-lg-6">
+	          <p>A majority of of the male academics are at the professor level: <span class="number-box" id="percent-of-men-professors"></span></p>
+	        </div>
+	      </div>
+	    </div>
+	  </section>
 
-        <div class="row">
-          <div class="col-md-offset-2">There is a very loose correlation between salary and years since receiving a PhD</div>
-        </div>
-        <div class="row">
-          <div class="col-md-offset-2" id="phd-salary"></div>
-        </div>
+	  <section class="section">
+	    <div class="container">
+	      
+	      <div class="row">
+	        <div class="col-xs-12 col-sm-6 text-center">
+	          <h2 class="section-heading">Men outnumber women 10 to 1</h2 class="section-heading">
+	          </div>
+	          <div class="col-xs-12 col-sm-6 text-center">
+	            <h2 class="section-heading">Men earn on average about 15% more</h2 class="section-heading">
+	          </div>
+	        </div>
 
-    </div>
+	        <div class="row">
+	          <div class="col-xs-12 col-sm-6 text-center" id="gender-balance" class="custom-chart"></div>
+	          <div class="col-xs-12 col-sm-6 text-center" id="average-salary" class="custom-chart"></div>
+	        </div>
 
+	        <div class="row">
+	          <div class="col-xs-12 col-sm-6 col-sm-offset-3 text-center">
+	            <h2 class="section-heading">Distribution of ranks is weighted towards the upper level for men.</h2 class="section-heading">
+	          </div>
+	          <div class="col-xs-12 col-sm-6 col-sm-offset-3 text-center" id="rank-distribution" class="custom-chart"></div>
+	        </div>
+	      </div>
+	    </section>
+
+	    <section class="section">
+	      <div class="container">
+	        
+	        <div class="row">
+	          <div class="col-xs-12 col-sm-12 text-center">
+	            <h2 class="section-heading">There appears to be little or no correlation between salary and years of service.</h2>
+	        </div>
+
+	        <div class="col-xs-12 col-sm-12 text-center" id="service-salary">
+	        	
+	        </div>
+	      </div>
+	    </div>
+	  </section>
+
+	  <section class="section">
+	    <div class="container">
+
+	      <div class="row">
+	        <div class="col-xs-12 col-sm-12 text-center">
+	          <h2 class="section-heading">There is a very loose correlation between salary and years since receiving a PhD.</h2>
+	        </div>
+
+	        <div class="col-xs-12 col-sm-12 text-center" id="phd-salary"></div>
+	      </div>
+	      
+	    </div>
+	  </section>
+	</main>
     <script type="text/javascript" src="static/graphs.js"></script>
 </body>
 </html>
