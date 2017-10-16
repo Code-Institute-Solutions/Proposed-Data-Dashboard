@@ -78,8 +78,8 @@ function show_gender_balance(ndx) {
     var genderMix = genderDim.group();
 
     dc.barChart("#gender-balance")
-        .width(400)
-        .height(300)
+        .width(350)
+        .height(250)
         .margins({top: 10, right: 50, bottom: 30, left: 50})
         .dimension(genderDim)
         .group(genderMix)
@@ -115,8 +115,8 @@ function show_average_salaries(ndx) {
     );
 
     dc.barChart("#average-salary")
-        .width(400)
-        .height(300)
+        .width(350)
+        .height(250)
         .margins({top: 10, right: 50, bottom: 30, left: 50})
         .dimension(genderDim)
         .group(averageSalaryByGender)
@@ -168,8 +168,8 @@ function show_rank_distribution(ndx) {
     var rankByGenderProf = reduceByRank(genderDim, "Prof");
     
     dc.barChart("#rank-distribution")
-        .width(400)
-        .height(300)
+        .width(350)
+        .height(250)
         .dimension(genderDim)
         .group(rankByGenderAssocProf, "Assoc Prof")
         .stack(rankByGenderAsstProf, "Asst")
