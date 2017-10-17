@@ -7,13 +7,31 @@
 	margin-bottom: 0;
 }
 
+.section-heading, #discipline-selector {
+	display: inline-block;	
+	float: none;
+	margin: 0;
+}
+
+.section-heading {
+	margin-bottom: 50px;
+}
+
 #discipline-selector {
-	margin-bottom: 30px;
+	margin-left: 15px;
 }
 
 .number-box {
+	margin-right: 75px;
+}
+
+.number-box, .fa.fa-gender {
     font-size: 30px;
     font-weight: 500;
+}
+
+.fa-gender {
+	margin-right: 10px;
 }
 
 .custom-chart {
@@ -26,10 +44,5 @@
 }
 
 .section-paragraph {
-	margin-bottom: 50px;
 	line-height: 1.2;
-}
-
-.dc-select-menu {
-	margin: 30px auto;
 }
