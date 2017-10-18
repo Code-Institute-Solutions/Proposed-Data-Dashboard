@@ -179,6 +179,7 @@ function show_rank_distribution(ndx) {
         })
         .x(d3.scale.ordinal())
         .xUnits(dc.units.ordinal)
+        .xAxisLabel("Gender")
         .legend(dc.legend().x(320).y(20).itemHeight(15).gap(5))
         .margins({top: 10, right: 100, bottom: 30, left: 30});
 }
