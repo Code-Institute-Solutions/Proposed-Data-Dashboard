@@ -138,14 +138,13 @@ function show_average_salaries(ndx) {
 
 function show_rank_distribution(ndx) {
 
-    var reduceByRank = function (dim, rank) {
-        return dim.group().reduce(
+    function rankByGender(dimension, rank) {
+        return dimension.group().reduce(
             function (p, v) {
                 p.total++;
                 if (v.rank === rank) {
                     p.match++;
                 };
-                p.percent = p.match / p.total;
                 return p;
             },
             function (p, v) {
@@ -153,28 +152,32 @@ function show_rank_distribution(ndx) {
                 if (v.rank === rank) {
                     p.match--;
                 };
-                p.percent = p.match / p.total;
                 return p;
             },
             function () {
-                return { total: 0, match: 0, percent: 0 }
+                return { total: 0, match: 0 }
             }
         );
     };
 
-    var genderDim = ndx.dimension(dc.pluck("sex"));
-    var rankByGenderAssocProf = reduceByRank(genderDim, "AssocProf");
-    var rankByGenderAsstProf = reduceByRank(genderDim, "AsstProf");
-    var rankByGenderProf = reduceByRank(genderDim, "Prof");
+    var dim = ndx.dimension(dc.pluck("sex"));
+    var profByGender = rankByGender(dim, "Prof");
+    var asstProfByGender = rankByGender(dim, "AsstProf");
+    var assocProfByGender = rankByGender(dim, "AssocProf");
     
     dc.barChart("#rank-distribution")
         .width(350)
         .height(250)
-        .dimension(genderDim)
-        .group(rankByGenderAssocProf, "Assoc Prof")
-        .stack(rankByGenderAsstProf, "Asst")
-        .stack(rankByGenderProf, "Prof")
+        .dimension(dim)
+        .group(profByGender, "Prof")
+        .stack(asstProfByGender, "AsstProf")
+        .stack(assocProfByGender, "AssocProf")
         .valueAccessor(function (d) {
+            if(d.value.total > 0) {
+                return (d.value.match / d.value.total) * 100
+            } else {
+                return 0;
+            }
             return d.value.percent * 100;
         })
         .x(d3.scale.ordinal())
